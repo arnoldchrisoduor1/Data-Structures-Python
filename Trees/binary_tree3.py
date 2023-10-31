@@ -1,3 +1,5 @@
+#Deleting nodes using the min element from the left subtree.
+
 class BinarySearchTreeNode():
     def __init__(self, data):
         self.data = data
@@ -87,7 +89,25 @@ class BinarySearchTreeNode():
             total_sum += self.right.calculate_sum()
         return total_sum
     
-    
+    def delete(self, val):
+        if val < self.data:
+            if self.left:
+                self.left = self.left.delete(val)
+        elif val > self.data:
+            if self.right:
+                self.right = self.right.delete(val)
+        else:
+            if self.left is None and self.right is None:
+                return None
+            if self.left is None:
+                return self.right
+            if self.right is None:
+                return self.left
+            
+            min_val = self.right.find_min()
+            self.data = min_val
+            self.right = self.right.delete(min_val)
+        return self
 
 def build_tree(elements):
     root = BinarySearchTreeNode(elements[0])
@@ -98,6 +118,7 @@ def build_tree(elements):
     return root
 
 if __name__ == '__main__':
-    numbers = [17, 4, 1, 20, 9, 23, 18]
-    numbers_tree = build_tree(numbers)
-    print(numbers_tree.search(3))
+    numbers_tree = build_tree([17, 4, 1, 20, 9, 23, 18, 34])
+    print("Before deleting the tree: ",numbers_tree.in_order_transversal())
+    numbers_tree.delete(17)
+    print("After deleting 17: ",numbers_tree.in_order_transversal())
