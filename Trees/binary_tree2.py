@@ -33,6 +33,25 @@ class BinarySearchTreeNode():
 
         return elements
     
+    def post_order_transversal(self):
+        elements = []
+
+        if self.left:
+            elements += self.left.post_order_transversal()
+        if self.right:
+            elements += self.right.post_order_transversal()
+        elements.append(self.data)
+        return elements
+    
+    def pre_order_transversal(self):
+        elements = []
+        elements.append(self.data)
+        if self.left:
+            elements += self.left.pre_order_transversal()
+        if self.right:
+            elements += self.right.pre_order_transversal()
+        return elements
+    
     def search(self,val):
         if self.data == val:
             return True
@@ -59,6 +78,16 @@ class BinarySearchTreeNode():
         if self.right is None:
             return self.data
         return self.right.find_max()
+    
+    def calculate_sum(self):
+        total_sum = self.data
+        if self.left:
+            total_sum += self.left.calculate_sum()
+        if self.right:
+            total_sum += self.right.calculate_sum()
+        return total_sum
+    
+    
 
 def build_tree(elements):
     root = BinarySearchTreeNode(elements[0])
@@ -79,3 +108,14 @@ print("Minimum element in the binary search tree:", min_element)
 max_element = numbers_tree.find_max()
 print("The maximum number in the tree is: ", max_element)
 
+summ = numbers_tree.calculate_sum()
+print("The sum of all the elements is: ", summ)
+
+inorder_elements = numbers_tree.in_order_transversal()
+print("The values for the inorder transversal: ", inorder_elements)
+
+pre_order_elements = numbers_tree.pre_order_transversal()
+print("The values for pre_order_transversal: ", pre_order_elements)
+
+post_order_elements = numbers_tree.post_order_transversal()
+print("The numbers for post order transversal: ", post_order_elements)
