@@ -49,6 +49,16 @@ class BinarySearchTreeNode():
                 return self.right.search(val)
             else:
                 return False
+            
+    def find_min(self):
+        if self.left is None:
+            return self.data
+        return self.left.find_min()
+    
+    def find_max(self):
+        if self.right is None:
+            return self.data
+        return self.right.find_max()
 
 def build_tree(elements):
     root = BinarySearchTreeNode(elements[0])
@@ -63,11 +73,9 @@ if __name__ == '__main__':
     numbers_tree = build_tree(numbers)
     print(numbers_tree.search(3))
 
-    countries = ["India", "Pakistan", "Germany", "USA", "China", "India", "UK", "USA"]
+min_element = numbers_tree.find_min()
+print("Minimum element in the binary search tree:", min_element)
 
-    country_tree = build_tree(countries)
+max_element = numbers_tree.find_max()
+print("The maximum number in the tree is: ", max_element)
 
-    print("UK is in the list?", country_tree.search("UK"))
-    print("Sweden is in the list?", country_tree.search("Sweden"))
-
-    print(country_tree.in_order_transversal())
