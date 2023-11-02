@@ -8,6 +8,6 @@ def fibonacci_upto(limit):
             break
     return sequence
 
-limit = int(input("Give the limit of the fibonacci sequence: "))
+limit = int(input("Give the limit of the number of fibonacci sequences: "))
 fib_numbers = fibonacci_upto(limit)
-print(f"The fibonacci sequence upto, {limit}, are {fib_numbers}")
+print(f"The fibonacci numbers upto, {limit} are : {fib_numbers}")

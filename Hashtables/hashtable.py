@@ -20,11 +20,11 @@ class HashTable:
         return self.arr[h]
     
     def __setitem__(self, key, val):
-        h = self.het_hash(key)
+        h = self.get_hash(key)
         self.arr[h] = val
 
     def __delitem__(self, key):
-        h = self.het_hash(key)
+        h = self.get_hash(key)
         self.arr[h] = None
 
 t = HashTable()
