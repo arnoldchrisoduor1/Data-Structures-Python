@@ -28,7 +28,7 @@ class HashTable:
         self.arr[h] = None
 
 t = HashTable()
-t["march 6"] = 310
-t["march 7"] = 420
+t["march 6"]
+t["march 7"]
 
 t.arr
